@@ -3,13 +3,17 @@
 #include "riscv_test.h"
 #include "test_macros.h"
 
-RVTEST_RV64M
+RVTEST_RV32M
 RVTEST_CODE_BEGIN
 
   .align 2
   .option norvc
 
   li TESTNUM, 2
+
+  la t3, mtvec_handler
+  csrr t2, mtvec
+  csrw mtvec, t3
 illegal_instruction:
   .word 0              
   j fail
@@ -21,7 +25,12 @@ mtvec_handler:
   li t1, CAUSE_ILLEGAL_INSTRUCTION
   csrr t0, mcause
   bne t0, t1, fail
+  
   csrr t0, mepc
+  addi t0, t0, 8
+  csrw mepc, t0
+
+  csrw mtvec, t2
 
   mret
 
