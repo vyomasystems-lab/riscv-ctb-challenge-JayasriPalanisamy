@@ -25,7 +25,7 @@ priv-mode:
 general:
   total_instructions: 1000
   regs_not_use: x1,x2
-  custom_trap_handler: false
+  custom_trap_handler: true
   code_start_address: 0x80000000
   default_program_exit: true
   delegation: 0x0
@@ -176,16 +176,16 @@ d-cache:
 # Exception generation
 # ---------------------------------------------------------------------------------
 exception-generation:
-  ecause00: 0
-  ecause01: 0
-  ecause02: 0
-  ecause03: 0
-  ecause04: 0
-  ecause05: 0
-  ecause06: 0
-  ecause07: 0
-  ecause08: 0
-  ecause09: 0
+  ecause00: 10
+  ecause01: 1
+  ecause02: 2
+  ecause03: 6
+  ecause04: 2
+  ecause05: 7
+  ecause06: 2
+  ecause07: 2
+  ecause08: 2
+  ecause09: 8
   ecause10: 0
   ecause11: 0
   ecause12: 0
